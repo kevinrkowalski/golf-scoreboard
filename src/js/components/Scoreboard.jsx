@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 
-const Scoreboard = ({ players, handleScoreChange }) => {
+const Scoreboard = ({ players, handleError, handleScoreChange }) => {
   const rounds = 9
 
   const generateInitialState = () => {
     const initialState = {}
     players.forEach(player => {
       for (let i = 1; i <= rounds; i++) {
-        initialState[`${player.name}-${i}`] = 0
+        initialState[`${player.name}-${i}`] = ''
       }
     })
     return initialState
@@ -18,6 +18,11 @@ const Scoreboard = ({ players, handleScoreChange }) => {
   const handleInput = (e) => {
     const id = e.target.id
     const value = e.target.value
+    const regex = /^-?\d{1,2}$/
+    if (value !== '' && regex.test(value) !== true) {
+      handleError('You must enter a valid score')
+      return
+    }
     setInputs(previousInputs => ({ ...previousInputs, [id]: value }))
   }
 
@@ -50,7 +55,7 @@ const Scoreboard = ({ players, handleScoreChange }) => {
 
     for (let i = 0; i < players.length; i++) {
       const key = `${players[i].name}-${round}`
-      columns.push(<td key={key}><input id={key} type="number" data-name={players[i].name} value={inputs[key]} onBlur={updateScore} onChange={handleInput} /></td>)
+      columns.push(<td key={key}><input id={key} type="number" data-name={players[i].name} value={inputs[key]} min="-8" max="99" onBlur={updateScore} onChange={handleInput} /></td>)
     }
 
     return columns

@@ -19,13 +19,14 @@
       }
     }
 
-    thead,
-    tfoot,
+    thead tr,
+    tfoot tr,
     tr:nth-child(even) {
       background-color: whitesmoke;
     }
 
     td, th {
+      margin: 0.25rem;
       padding: 0.25rem;
       text-align: center;
     }

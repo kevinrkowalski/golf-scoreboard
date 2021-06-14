@@ -1,9 +1,18 @@
 .header {
   background-color: #34495e;
-  flex-wrap: wrap;
-  justify-content: center;
   margin-bottom: 1rem;
   color: #fff;
+  padding: 1rem;
+
+  &-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+  
+    @media screen and (min-width:768px) {
+      justify-content: space-between;
+    }
+  }
 }
 
 .main-nav {

@@ -40,7 +40,11 @@ const App = () => {
     setErrors(previousErrorsArray => [...previousErrorsArray, error])
     // wait 3 secs, remove last error messages
     setTimeout(() => {
-      setErrors([])
+      setErrors(previousErrorsArray => {
+        const newErrorsArray = [...previousErrorsArray]
+        newErrorsArray.shift()
+        return newErrorsArray
+      })
     }, 3000)
   }
 
@@ -77,6 +81,7 @@ const App = () => {
         <Scoreboard
           players={players}
           handleScoreChange={handleScoreChange}
+          handleError={handleError}
         />
       }
     </>

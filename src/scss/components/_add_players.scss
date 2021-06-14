@@ -4,6 +4,7 @@
   input {
     font-size: 1rem;
     flex-grow: 1;
+    padding: 0.5rem;
   }
 
   &-btn {
@@ -24,8 +25,8 @@
     padding: 0.15rem 0.5rem;
     font-size: 1rem;
     margin-left: 0.5rem;
-    min-width: 26px;
-    aspect-ratio: 1/1;
+    width: 2rem;
+    height: 2rem;
     cursor: pointer;
   }
 }
