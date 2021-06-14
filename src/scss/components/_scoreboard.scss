@@ -1,0 +1,47 @@
+.scoreboard {
+  max-width: 100%;
+  overflow: scroll;
+
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 100%;
+
+    tr {
+      position: relative;
+      background-color: #fff;
+
+      th:first-of-type {
+        background-color: inherit;
+        position: sticky;
+        top: 0;
+        left: 0;
+      }
+    }
+
+    thead,
+    tfoot,
+    tr:nth-child(even) {
+      background-color: whitesmoke;
+    }
+
+    td, th {
+      padding: 0.25rem;
+      text-align: center;
+    }
+
+    input {
+      font-size: 1rem;
+      padding: 0.25rem;
+      max-width: 5rem;
+      text-align: center;
+      -moz-appearance: textfield;
+
+      &::-webkit-outer-spin-button,
+      &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+      }
+    }
+  }
+}
