@@ -6,7 +6,7 @@
   "scripts": {
     "start": "parcel src/index.html",
     "clean": "rm -r dist && rm -r .parcel-cache",
-    "build": "npm run clean && parcel build src/index.html --public-url './'"
+    "build": "parcel build src/index.html --public-url './'"
   },
   "keywords": [],
   "author": "",
