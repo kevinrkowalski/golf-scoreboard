@@ -1,14 +1,19 @@
 import React from 'react'
 
-const Header = ({ handleNewGame }) => {
+import Link from './Link'
+
+const Header = ({ isGameStarted, handleNewGame }) => {
   return (
     <header className="header">
       <div className="header-container container flex">
-        <h1>Golf Scoreboard</h1>
+        <h1><Link href="/">Golf Scoreboard</Link></h1>
         <nav className="main-nav">
           <ul className="flex list-reset">
-            <li><a href="#" onClick={handleNewGame}>New Game</a></li>
-            <li><a href="#">About</a></li>
+            {isGameStarted
+              ? <li><a href="#" onClick={handleNewGame}>New Game</a></li>
+              : null
+            }
+            <li><Link href="/about">About</Link></li>
           </ul>
         </nav>
       </div>

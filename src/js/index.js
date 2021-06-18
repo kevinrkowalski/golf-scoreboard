@@ -3,10 +3,14 @@ import ReactDom from 'react-dom'
 
 // Components
 import Header from './components/Header'
+import Route from './components/Route'
 import AddPlayers from './components/AddPlayers'
 import Scoreboard from './components/Scoreboard'
 import Error from './components/Error'
 import Modal from './components/Modal'
+
+// Pages
+import About from './pages/about'
 
 const App = () => {
   const [players, setPlayers] = useState([])
@@ -62,7 +66,8 @@ const App = () => {
     })
   }
 
-  const handleNewGame = () => {
+  const handleNewGame = (e) => {
+    e.preventDefault()
     setIsGameStarted(false)
     if (players.length > 0) {
       setModalOpen(true)
@@ -85,28 +90,33 @@ const App = () => {
 
   return (
     <>
-      <Header handleNewGame={handleNewGame} />
-      <Error errors={errors} />
-      <Modal showModal={modalOpen}>
-        <p>Would you like to keep the same players?</p>
-        <button data-keep-players="true" onClick={handleKeepPlayerClick}>Yes</button>
-        <button data-keep-players="false" onClick={handleKeepPlayerClick}>No</button>
-      </Modal>
-      {isGameStarted
-        ?
-        <Scoreboard
-          players={players}
-          handleScoreChange={handleScoreChange}
-          handleError={handleError}
-        />
-        :
-        <AddPlayers
-          players={players}
-          handlePlayerAdd={handlePlayerAdd}
-          handlePlayerRemove={handlePlayerRemove}
-          handleStartGame={handleStartGame}
-        />
-      }
+      <Header isGameStarted={isGameStarted} handleNewGame={handleNewGame} />
+      <Route path="/">
+        <Error errors={errors} />
+        <Modal showModal={modalOpen}>
+          <p>Would you like to keep the same players?</p>
+          <button data-keep-players="true" onClick={handleKeepPlayerClick}>Yes</button>
+          <button data-keep-players="false" onClick={handleKeepPlayerClick}>No</button>
+        </Modal>
+        {isGameStarted
+          ?
+          <Scoreboard
+            players={players}
+            handleScoreChange={handleScoreChange}
+            handleError={handleError}
+          />
+          :
+          <AddPlayers
+            players={players}
+            handlePlayerAdd={handlePlayerAdd}
+            handlePlayerRemove={handlePlayerRemove}
+            handleStartGame={handleStartGame}
+          />
+        }
+      </Route>
+      <Route path="/about">
+        <About />
+      </Route>
     </>
   )
 }
